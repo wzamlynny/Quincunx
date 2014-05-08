@@ -25,6 +25,7 @@ class Peg
   }
   void display()
   {
+    fill(0,100,100);
     ellipse(xpos,ypos,diam,diam);
    if(left!=null && right!=null) 
    {
@@ -50,8 +51,7 @@ class Peg
     else
     {
       line(xpos+diam*10,ypos+50,xpos+diam*10,height);
-    }
-    
+    } 
   }
   void check()
   {
