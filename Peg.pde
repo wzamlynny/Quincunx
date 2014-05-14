@@ -25,7 +25,7 @@ class Peg
   }
   void display()
   {
-    fill(0,100,100);
+    fill(0,0,100);
     ellipse(xpos,ypos,diam,diam);
    if(left!=null && right!=null) 
    {
@@ -35,6 +35,7 @@ class Peg
   }
   void bins()
   {
+    stroke(0,0,100);
     if(left!=null)
     {
       left.bins();
@@ -53,8 +54,38 @@ class Peg
       line(xpos+diam*10,ypos+50,xpos+diam*10,height);
     } 
   }
-  void check()
+  void ballCheck(Ball ball)
   {
-    
-  }
+    if(ball.ypos+ball.diam<ypos-diam)//if above
+    {
+    }
+    else if(ball.ypos+ball.diam==ypos-diam) //below
+    {
+      if(int(random(0,2))==0)//randomization function
+      {
+        if(left!=null)
+        {
+          ball.xChange=(left.xpos-xpos)/(left.ypos-ypos);//go left
+        }
+      }
+      else
+      {
+        if(right!=null)
+        {
+          ball.xChange=(right.xpos-xpos)/(right.ypos-ypos);//go right
+        }
+      }
+    }
+    else//interaction with the lower pegs
+    {
+      if(ball.xChange<0&&left!=null)
+      {
+        left.ballCheck(ball);
+      }
+      else if(ball.xChange>0&&right!=null)
+      {
+        right.ballCheck(ball);
+      }
+    }
+   }
 }

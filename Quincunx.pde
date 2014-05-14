@@ -13,10 +13,11 @@ void setup()
   Peg root;
   
   int amount=1;
+  //float xChange=0;
   
 void draw()
 {
-  background(255,0,100);
+  background(0,0,0);
   
   root.display();
   root.bins();
@@ -26,6 +27,7 @@ void draw()
     Ball ball = balls.get(i);
     ball.display();
     ball.fall();
+    root.ballCheck(ball);
   }
   
 }
