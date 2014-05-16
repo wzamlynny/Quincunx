@@ -48,4 +48,36 @@ class Ball
       xpos+=xChange;
    }
   }
+  void bins(Peg peg)//WHY DO ONLY SOME OF THEM WORK D:
+  {
+    if(peg.left!=null)
+    {
+      bins(peg.left);
+    }
+    else
+    {
+        if(xpos<peg.xpos&&ypos>peg.ypos)//if its to the left
+        {
+          if(xpos-diam<=peg.xpos-diam*10)
+          {
+            xChange=-xChange;
+          }
+        }
+    }
+    if(peg.right!=null)
+    {
+      bins(peg.right);
+    }
+    else
+    {
+      if(xpos>peg.xpos&&ypos>peg.ypos)//if its to the right
+      {
+        if(xpos+diam/2>=peg.xpos+diam*10)
+        {
+          xChange=-xChange;
+        }
+      }
+      
+    }
+  }
 }

@@ -40,18 +40,26 @@ class Peg
     {
       left.bins();
     }
-    else
+    else//draw the line to the left
     {
       line(xpos-diam*10,ypos+50,xpos-diam*10,height);
+      /*if(ball.xpos-ball.diam==xpos-diam*10)
+      {
+        ball.xChange=-ball.xChange;
+      }*/
     }
     
     if(right!=null)
     {
       right.bins();
     }
-    else
+    else//draw the line to the right
     {
       line(xpos+diam*10,ypos+50,xpos+diam*10,height);
+      /*if(ball.xpos+ball.diam==xpos+diam*10)
+      {
+        ball.xChange=-ball.xChange;
+      }*/
     } 
   }
   void ballCheck(Ball ball)
@@ -59,20 +67,30 @@ class Peg
     if(ball.ypos+ball.diam<ypos-diam)//if above
     {
     }
-    else if(ball.ypos+ball.diam==ypos-diam) //below
+    else if(ball.ypos+ball.diam/2==ypos-diam/2) //below
     {
       if(int(random(0,2))==0)//randomization function
       {
         if(left!=null)
         {
+          timer();//realistic pause
           ball.xChange=(left.xpos-xpos)/(left.ypos-ypos);//go left
+        }
+        else
+        {
+          //go from the bottom peg
         }
       }
       else
       {
         if(right!=null)
         {
+          timer();//realistic pause
           ball.xChange=(right.xpos-xpos)/(right.ypos-ypos);//go right
+        }
+        else
+        {
+          //go from the bottom peg
         }
       }
     }

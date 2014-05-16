@@ -3,17 +3,14 @@ void setup()
   size(displayWidth-50, displayHeight-50);
   colorMode(HSB,360,100,100);
   
-  //ball[0]=new Ball(width/2,height*1/9);
   balls=new ArrayList<Ball>();
   balls.add(new Ball(width/2,height*1/9));
   root=new Peg(width/2,height*3/16,0);
 }
   ArrayList <Ball> balls;
-  //Ball []ball=new Ball[1];
   Peg root;
-  
-  int amount=1;
-  //float xChange=0;
+
+  float startTime=0;
   
 void draw()
 {
@@ -28,8 +25,13 @@ void draw()
     ball.display();
     ball.fall();
     root.ballCheck(ball);
+    ball.bins(root);
+    
   }
-  
+  if(balls.size()>=50)  //safety- removes balls when too many
+  {
+    balls.remove(0);
+  }
 }
 
 void mousePressed()
@@ -41,9 +43,26 @@ void keyPressed()//Press a key to remove the balls
   for(int i=balls.size()-1;i>=0;i--)
   {
     Ball ball = balls.get(i);
-    if(ball.ypos==height-ball.diam)
+    if(ball.ypos>=height-ball.diam)
     {
       balls.remove(i);
     }
+  }
+}
+
+void timer()
+{
+  if(startTime==0)
+  {
+    startTime=millis();
+  }
+  while(millis()-startTime<=100)
+  {
+    //noLoop();
+  }
+  if(millis()-startTime>=100)
+  {
+    //loop();
+    startTime=0;
   }
 }
