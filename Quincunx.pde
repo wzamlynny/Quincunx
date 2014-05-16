@@ -58,11 +58,9 @@ void timer()
   }
   while(millis()-startTime<=100)
   {
-    //noLoop();
   }
   if(millis()-startTime>=100)
   {
-    //loop();
     startTime=0;
   }
 }
