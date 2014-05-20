@@ -26,6 +26,14 @@ void draw()
     ball.fall();
     root.ballCheck(ball);
     ball.bins(root);
+   /* for(int j=balls.size()-1;j>=0;j--)//This is a mess. It should not exist. Ever.
+    {
+      if(i!=j)
+      {
+        Ball check = balls.get(j);
+        ball.ballCheck(check);
+      }
+    }*/
     
   }
   if(balls.size()>=50)  //safety- removes balls when too many
@@ -36,7 +44,11 @@ void draw()
 
 void mousePressed()
 {
-  balls.add(new Ball(width/2,height*1/9));
+  Ball ball = balls.get(balls.size()-1);//prevents multiple balls from going at once
+  if(ball.ypos>root.ypos)
+  {
+    balls.add(new Ball(width/2,height*1/9));
+  }
 }
 void keyPressed()//Press a key to remove the balls
 {
@@ -56,10 +68,10 @@ void timer()
   {
     startTime=millis();
   }
-  while(millis()-startTime<=100)
+  while(millis()-startTime<=75)//Gives the ball a 'realistic' pause
   {
   }
-  if(millis()-startTime>=100)
+  if(millis()-startTime>=75)
   {
     startTime=0;
   }

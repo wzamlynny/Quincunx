@@ -5,6 +5,9 @@ class Peg
   float diam;
   int rowMax;
   
+  boolean moveLeft=false;
+  boolean moveRight=false;
+  
   Peg left;
   Peg right;
   
@@ -43,10 +46,6 @@ class Peg
     else//draw the line to the left
     {
       line(xpos-diam*10,ypos+50,xpos-diam*10,height);
-      /*if(ball.xpos-ball.diam==xpos-diam*10)
-      {
-        ball.xChange=-ball.xChange;
-      }*/
     }
     
     if(right!=null)
@@ -56,35 +55,39 @@ class Peg
     else//draw the line to the right
     {
       line(xpos+diam*10,ypos+50,xpos+diam*10,height);
-      /*if(ball.xpos+ball.diam==xpos+diam*10)
-      {
-        ball.xChange=-ball.xChange;
-      }*/
     } 
   }
   void ballCheck(Ball ball)
   {
-    if(ball.ypos+ball.diam<ypos-diam)//if above
-    {
-    }
-    else if(ball.ypos+ball.diam/2==ypos-diam/2) //below
+    if(ball.ypos+ball.diam/2==ypos-diam/2&&ball.xpos==xpos) //at the point
     {
       if(int(random(0,2))==0)//randomization function
       {
-        if(left!=null)
+        moveLeft=true;
+        /*if(left!=null)
         {
           timer();//realistic pause
-          ball.xChange=(left.xpos-xpos)/(left.ypos-ypos);//go left
+          if(ball.xpos+ball.diam>xpos-diam)//NEED TO MOVE THIS OUT OF THIS FUNCTION
+          {
+            ball.xChange--;
+            ball.yChange=0;
+          }
+          else
+          {
+            ball.xChange=(left.xpos-ball.xpos)/(left.ypos-ball.ypos);//go left
+            ball.yChange=1;
+          }
         }
         else
         {
           ball.xChange=-.5;//change the slope
           //go from the bottom peg
-        }
+        }*/
       }
       else
       {
-        if(right!=null)
+        moveRight=true;
+        /*if(right!=null)
         {
           timer();//realistic pause
           ball.xChange=(right.xpos-xpos)/(right.ypos-ypos);//go right
@@ -93,10 +96,14 @@ class Peg
         {
           ball.xChange=.5;//change the slope
           //go from the bottom peg
-        }
+        }*/
       }
     }
-    else//interaction with the lower pegs
+    /*else if(ball.ypos+ball.diam/2>=ypos-diam/2)
+    {
+      
+    }*/
+    else//calls the next peg
     {
       if(ball.xChange<0&&left!=null)
       {
@@ -107,5 +114,41 @@ class Peg
         right.ballCheck(ball);
       }
     }
+    if(moveLeft)
+    {
+      if(left!=null)
+        {
+          timer();//realistic pause
+          if(ball.xpos+ball.diam>xpos-diam)//NEED TO MOVE THIS OUT OF THIS FUNCTION
+          {
+            ball.xChange--;
+            ball.yChange=0;
+          }
+          else
+          {
+            ball.xChange=(left.xpos-ball.xpos)/(left.ypos-ball.ypos);//go left
+            ball.yChange=1;
+          }
+        }
+        else
+        {
+          ball.xChange=-.5;//change the slope
+          //go from the bottom peg
+        }
+    }
+    if(moveRight)
+    {
+      if(right!=null)
+        {
+          timer();//realistic pause
+          ball.xChange=(right.xpos-xpos)/(right.ypos-ypos);//go right
+        }
+        else
+        {
+          ball.xChange=.5;//change the slope
+          //go from the bottom peg
+        }
+    }
+    
    }
 }
