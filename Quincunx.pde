@@ -70,9 +70,11 @@ void timer()
   }
   while(millis()-startTime<=75)//Gives the ball a 'realistic' pause
   {
+    //noLoop();
   }
   if(millis()-startTime>=75)
   {
+    //loop();
     startTime=0;
   }
 }

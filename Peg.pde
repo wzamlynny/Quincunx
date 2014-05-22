@@ -80,7 +80,6 @@ class Peg
         }
         else
         {
-          ball.xChange=-.5;//change the slope
           //go from the bottom peg
         }*/
       }
@@ -94,7 +93,6 @@ class Peg
         }
         else
         {
-          ball.xChange=.5;//change the slope
           //go from the bottom peg
         }*/
       }
