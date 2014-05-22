@@ -36,7 +36,11 @@ void draw()
 
 void mousePressed()
 {
-  balls.add(new Ball(width/2,height*1/9));
+  Ball ball = balls.get(balls.size()-1);//prevents multiple balls from going at once
+  if(ball.ypos>root.ypos)
+  {
+    balls.add(new Ball(width/2,height*1/9));
+  }
 }
 void keyPressed()//Press a key to remove the balls
 {

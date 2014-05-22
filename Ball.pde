@@ -4,7 +4,7 @@ class Ball
   float ypos;
   float diam;
   float xChange=0;
-  float gravity=1;
+  float yChange=1;
   float c=0;
   Ball(float x,float y)
   {
@@ -37,7 +37,7 @@ class Ball
   {
    if(ypos<height-diam)
    {
-      ypos+=gravity;
+      ypos+=yChange;
    }
    else
    {
