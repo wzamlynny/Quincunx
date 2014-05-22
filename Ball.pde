@@ -4,21 +4,19 @@ class Ball
   float ypos;
   float diam;
   float xChange=0;
-  float yChange=1;
+  float gravity=1;
   float c=0;
   Ball(float x,float y)
   {
     xpos=x;
     ypos=y;
     diam=20;
-    //c=random(0,360);
   }
   Ball(float x,float y,float d)
   {
     xpos=x;
     ypos=y;
     diam=d;
-    //c=random(0,360);
   }
   
   void display()
@@ -39,7 +37,7 @@ class Ball
   {
    if(ypos<height-diam)
    {
-      ypos+=yChange;
+      ypos+=gravity;
    }
    else
    {
@@ -78,20 +76,8 @@ class Ball
         {
           xChange=-xChange;
         }
-      } 
+      }
+      
     }
   }
- /* void ballCheck(Ball ball)
-  {
-   if(ball.xpos+ball.diam>xpos-diam||ball.xpos-ball.diam<xpos+diam)
-   {
-     if(ypos>width-100)
-     {
-        xpos++;
-       //ball.xChange--;
-       ypos++;
-       //ball.ypos--;
-     }
-   }
-  }*/
 }
