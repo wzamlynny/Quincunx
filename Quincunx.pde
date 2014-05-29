@@ -1,7 +1,9 @@
 void setup()
 {
   size(displayWidth-50, displayHeight-50);
+  //size(500,500);
   colorMode(HSB,360,100,100);
+  rectMode(CENTER);
   
   balls=new ArrayList<Ball>();
   balls.add(new Ball(width/2,height*1/9));
@@ -11,16 +13,46 @@ void setup()
   Peg root;
 
   float startTime=0;
-  //float slope;
+  int screen=0;
   
 void draw()
 {
+  if(screen==0)
+  {
+    startScreen();
+  }
+  if(screen==1)
+  {
+    quincunx();
+  }
+}
+
+void startScreen()
+{
   background(0,0,0);
+  rect(width/2,height/2,100,50);
+  if(mouseX>=width/2-100&&mouseX<=width/2+100&&mouseY>=height/2-50&&mouseY<=height/2+50)
+  {
+    cursor(HAND);
+    if(mousePressed)
+    {
+      screen=1;
+    }
+  }
+  else
+  {
+    cursor(ARROW);
+  }
+  
+}
+
+void quincunx()
+{
+  background(0,0,0);
+  cursor(ARROW);
   
   root.display();
   root.bins();
-  
- // slope=(root.right.xpos-root.xpos)/(root.right.ypos-root.ypos);
   
   for(int i=balls.size()-1;i>=0;i--)
   {
@@ -31,7 +63,6 @@ void draw()
     ball.bins(root);
     
   }
-  
   
   if(balls.size()>=50)  //safety- removes balls when too many
   {
@@ -49,12 +80,15 @@ void mousePressed()
 }
 void keyPressed()//Press a key to remove the balls
 {
-  for(int i=balls.size()-1;i>=0;i--)
+  if(key==' ')//Space bar deletes
   {
-    Ball ball = balls.get(i);
-    if(ball.ypos>=height-ball.diam)
+    for(int i=balls.size()-1;i>=0;i--)
     {
-      balls.remove(i);
+      Ball ball = balls.get(i);
+      if(ball.ypos>=height-ball.diam)
+      {
+        balls.remove(i);
+      }
     }
   }
 }

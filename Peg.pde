@@ -15,8 +15,7 @@ class Peg
     xpos=x;
     ypos=y;
     diam=10;
-    rowMax=6;
-    
+    rowMax=6;  
     slope=(diam*5)/(height/10);
    
     if(row<rowMax)
@@ -25,8 +24,6 @@ class Peg
       left = new Peg(x-diam*5,y+height/10,row+1);
       right = new Peg(x+diam*5,y+height/10,row+1);
     } 
-    
-    //slope=(root.right.xpos-root.xpos)/(root.right.ypos-root.ypos);
   }
   
   void display()
@@ -69,32 +66,10 @@ class Peg
     {
       if(int(random(0,2))==0)//randomization function
       {
-        /*if(left!=null)
-        {
-          timer();//realistic pause
-          //ball.xChange=(left.xpos-xpos)/(left.ypos-ypos);//go left
-          ball.xChange=-slope;
-        }
-        else
-        {
-          ball.xChange=-.5;//change the slope
-          //go from the bottom peg
-        }*/
         ball.xChange=-slope;
       }
       else
       {
-        /*if(right!=null)
-        {
-          timer();//realistic pause
-          //ball.xChange=(right.xpos-xpos)/(right.ypos-ypos);//go right
-          ball.xChange=slope;
-        }
-        else
-        {
-          ball.xChange=(diam*5)/(height/10);//change the slope
-          //go from the bottom peg
-        }*/
         ball.xChange=slope;
       }
     }
