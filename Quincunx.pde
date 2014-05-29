@@ -11,6 +11,7 @@ void setup()
   Peg root;
 
   float startTime=0;
+  //float slope;
   
 void draw()
 {
@@ -18,6 +19,8 @@ void draw()
   
   root.display();
   root.bins();
+  
+ // slope=(root.right.xpos-root.xpos)/(root.right.ypos-root.ypos);
   
   for(int i=balls.size()-1;i>=0;i--)
   {
@@ -28,6 +31,8 @@ void draw()
     ball.bins(root);
     
   }
+  
+  
   if(balls.size()>=50)  //safety- removes balls when too many
   {
     balls.remove(0);

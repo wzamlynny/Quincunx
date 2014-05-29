@@ -5,8 +5,10 @@ class Peg
   float diam;
   int rowMax;
   
-  Peg left;
+  Peg left;//initializes the next pegs
   Peg right;
+  
+  float slope;
   
   Peg(float x,float y, int row)
   {
@@ -15,6 +17,7 @@ class Peg
     diam=10;
     rowMax=6;
     
+    slope=(diam*5)/(height/10);
    
     if(row<rowMax)
     {
@@ -22,7 +25,10 @@ class Peg
       left = new Peg(x-diam*5,y+height/10,row+1);
       right = new Peg(x+diam*5,y+height/10,row+1);
     } 
+    
+    //slope=(root.right.xpos-root.xpos)/(root.right.ypos-root.ypos);
   }
+  
   void display()
   {
     fill(0,0,100);
@@ -43,10 +49,6 @@ class Peg
     else//draw the line to the left
     {
       line(xpos-diam*10,ypos+50,xpos-diam*10,height);
-      /*if(ball.xpos-ball.diam==xpos-diam*10)
-      {
-        ball.xChange=-ball.xChange;
-      }*/
     }
     
     if(right!=null)
@@ -56,10 +58,6 @@ class Peg
     else//draw the line to the right
     {
       line(xpos+diam*10,ypos+50,xpos+diam*10,height);
-      /*if(ball.xpos+ball.diam==xpos+diam*10)
-      {
-        ball.xChange=-ball.xChange;
-      }*/
     } 
   }
   void ballCheck(Ball ball)
@@ -71,29 +69,33 @@ class Peg
     {
       if(int(random(0,2))==0)//randomization function
       {
-        if(left!=null)
+        /*if(left!=null)
         {
           timer();//realistic pause
-          ball.xChange=(left.xpos-xpos)/(left.ypos-ypos);//go left
+          //ball.xChange=(left.xpos-xpos)/(left.ypos-ypos);//go left
+          ball.xChange=-slope;
         }
         else
         {
           ball.xChange=-.5;//change the slope
           //go from the bottom peg
-        }
+        }*/
+        ball.xChange=-slope;
       }
       else
       {
-        if(right!=null)
+        /*if(right!=null)
         {
           timer();//realistic pause
-          ball.xChange=(right.xpos-xpos)/(right.ypos-ypos);//go right
+          //ball.xChange=(right.xpos-xpos)/(right.ypos-ypos);//go right
+          ball.xChange=slope;
         }
         else
         {
-          ball.xChange=.5;//change the slope
+          ball.xChange=(diam*5)/(height/10);//change the slope
           //go from the bottom peg
-        }
+        }*/
+        ball.xChange=slope;
       }
     }
     else//interaction with the lower pegs
