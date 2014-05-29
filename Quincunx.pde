@@ -1,7 +1,6 @@
 void setup()
 {
   size(displayWidth-50, displayHeight-50);
-  //size(500,500);
   colorMode(HSB,360,100,100);
   rectMode(CENTER);
   
@@ -30,7 +29,11 @@ void draw()
 void startScreen()
 {
   background(0,0,0);
+  fill(105,78,100);
   rect(width/2,height/2,100,50);
+  fill(0,0,0);
+  textSize(32);
+  text("PLAY",width/2-45,height/2+10);
   if(mouseX>=width/2-100&&mouseX<=width/2+100&&mouseY>=height/2-50&&mouseY<=height/2+50)
   {
     cursor(HAND);
