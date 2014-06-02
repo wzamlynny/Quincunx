@@ -28,6 +28,10 @@ void draw()
   {
     instructions();
   }
+  if(screen==3)
+  {
+    graph();
+  }
 }
 
 void startScreen()
@@ -91,6 +95,35 @@ void quincunx()
   {
     balls.remove(0);
   }
+  
+  //draws the button for graph
+  fill(0,0,100);
+  rect(100,height-100,125,50);
+  rect(width-100,height-100,125,50);
+  fill(0,0,0);
+  text("BACK",50,height-75);
+  text("GRAPH",width-150,height-75);
+  if(mouseX>=25&&mouseX<=225&&mouseY>=height-150&&mouseY<=height-50)
+  {
+    cursor(HAND);
+    if(mousePressed)
+    {
+      screen=0;
+    }
+  }
+  else if(mouseX>=width-225&&mouseX<=width+25&&mouseY>=height-150&&mouseY<=height-50)
+  {
+    cursor(HAND);
+    if(mousePressed)
+    {
+      screen=3;
+    }
+  }
+  else
+  {
+    cursor(ARROW);
+  }
+  
 }
 void instructions()
 {
@@ -99,12 +132,35 @@ void instructions()
   textSize(64);
   text("Instructions",width/2-200,100);
   textSize(32);
-  text("-Click to release a ball.\n-Space bar to remove all balls at the bottom.",50,height/4);
+  text("-CLICK to release a ball.\n-SPACE to remove all balls at the bottom.\n-When GRAPH on: SPACE to return to quincunx.",50,height/4);
   text("PRESS SPACE TO GO BACK",50,height*3/4);
   if(keyPressed&&key==' ')
   {
     screen=0;
   }
+}
+void graph()
+{
+  rect(width/2,height/2,50,50);
+  
+  
+  //START QUINCUNX AGAIN
+  if(keyPressed&&key==' ')
+  {
+    screen=1;
+  }
+  /*if(mouseX>=width-225&&mouseX<=width+25&&mouseY>=height-150&&mouseY<=height-50)
+  {
+    cursor(HAND);
+    if(mousePressed)
+    {
+      screen=1;
+    }
+  }
+  else
+  {
+    cursor(ARROW);
+  }*/
 }
 
 void mousePressed()
