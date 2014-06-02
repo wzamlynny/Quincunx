@@ -6,6 +6,7 @@ class Ball
   float xChange=0;
   float yChange=1;
   float c=0;
+  
   Ball(float x,float y)
   {
     xpos=x;
@@ -35,18 +36,13 @@ class Ball
   }
   void fall()
   {
-   if(ypos<height-diam)
-   {
-      ypos+=yChange;
-   }
-   else
-   {
-     xChange=0;
-   }
-   if(xChange!=0)
-   {
-      xpos+=xChange;
-   }
+    xpos+=xChange;
+    ypos+=yChange;    
+    if(ypos>=height-diam/2)//stop moving at the bottom pf the screen.
+    {
+      yChange=0;
+      xChange=0;
+    }
   }
   void bins(Peg peg)//WHY DO ONLY SOME OF THEM WORK D:
   {
@@ -58,7 +54,7 @@ class Ball
     {
         if(xpos<peg.xpos&&ypos>peg.ypos)//if its to the left
         {
-          if(xpos-diam<=peg.xpos-diam*10)
+          if(xpos-diam/2<=peg.xpos-peg.diam*10)
           {
             xChange=-xChange;
           }
@@ -72,7 +68,7 @@ class Ball
     {
       if(xpos>peg.xpos&&ypos>peg.ypos)//if its to the right
       {
-        if(xpos+diam/2>=peg.xpos+diam*10)
+        if(xpos+diam/2>=peg.xpos+peg.diam*10)
         {
           xChange=-xChange;
         }
