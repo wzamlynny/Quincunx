@@ -24,16 +24,28 @@ void draw()
   {
     quincunx();
   }
+  if(screen==2)
+  {
+    instructions();
+  }
 }
 
 void startScreen()
 {
   background(0,0,0);
+  fill(0,0,100);
+  textSize(100);
+  text("QUINCUNX",width/2-275,200);
+  textSize(16);
+  text("Weronika Zamlynny\nAP Statistics pd. 1-2 A\nFinal Project",width/2-75,250);
   fill(105,78,100);
   rect(width/2,height/2,100,50);
+  rect(width/2,height/2+100,250,50);
   fill(0,0,0);
   textSize(32);
-  text("PLAY",width/2-45,height/2+10);
+  text("PLAY",width/2-43,height/2+10);
+  text("INSTRUCTIONS",width/2-115,height/2+110);
+  //GO TO GAME
   if(mouseX>=width/2-100&&mouseX<=width/2+100&&mouseY>=height/2-50&&mouseY<=height/2+50)
   {
     cursor(HAND);
@@ -42,13 +54,21 @@ void startScreen()
       screen=1;
     }
   }
+  //GO TO INSTRUCTIONS
+  else if(mouseX>=width/2-100&&mouseX<=width/2+100&&mouseY>=height/2+50&&mouseY<=height/2+150)
+  {
+    cursor(HAND);
+    if(mousePressed)
+    {
+      screen=2;
+    }
+  }
   else
   {
     cursor(ARROW);
   }
   
 }
-
 void quincunx()
 {
   background(0,0,0);
@@ -70,6 +90,20 @@ void quincunx()
   if(balls.size()>=50)  //safety- removes balls when too many
   {
     balls.remove(0);
+  }
+}
+void instructions()
+{
+  fill(0,0,100);
+  background(0,0,0);
+  textSize(64);
+  text("Instructions",width/2-200,100);
+  textSize(32);
+  text("-Click to release a ball.\n-Space bar to remove all balls at the bottom.",50,height/4);
+  text("PRESS SPACE TO GO BACK",50,height*3/4);
+  if(keyPressed&&key==' ')
+  {
+    screen=0;
   }
 }
 
