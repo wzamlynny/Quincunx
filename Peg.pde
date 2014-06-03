@@ -59,14 +59,11 @@ class Peg
   }
   void ballCheck(Ball ball)
   {
-    if(ball.ypos+ball.diam<ypos-diam)//if above
-    {
-    }
-    else if(ball.ypos+ball.diam/2==ypos-diam/2) //below
+    if (ball.ypos+ball.diam/2 == ypos-diam/2) //below
     {
       if(int(random(0,2))==0)//randomization function
       {
-        ball.xChange=-slope;
+        ball.xChange=(-1)*slope;
       }
       else
       {
@@ -75,11 +72,11 @@ class Peg
     }
     else//interaction with the lower pegs
     {
-      if(ball.xChange<0&&left!=null)
+      if (ball.xChange<0 && left!=null)
       {
         left.ballCheck(ball);
       }
-      else if(ball.xChange>0&&right!=null)
+      else if( ball.xChange>0 && right!=null)
       {
         right.ballCheck(ball);
       }

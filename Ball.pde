@@ -38,39 +38,47 @@ class Ball
   {
     xpos+=xChange;
     ypos+=yChange;    
-    if(ypos>=height-diam/2)//stop moving at the bottom pf the screen.
+    if (ypos>=height-diam/2)  //stop moving at the bottom pf the screen.
     {
       yChange=0;
       xChange=0;
     }
   }
-  void bins(Peg peg)//WHY DO ONLY SOME OF THEM WORK D:
+  void bins(Peg peg)  //WHY DO ONLY SOME OF THEM WORK D:
   {
-    if(peg.left!=null)
+    if(peg.left != null)
     {
       bins(peg.left);
     }
     else
     {
-        if(xpos<peg.xpos&&ypos>peg.ypos)//if its to the left
+        if(xpos < peg.xpos && ypos>peg.ypos)  //if its to the left
         {
-          if(xpos-diam/2<=peg.xpos-peg.diam*10)
+          if (xpos-diam/2 == peg.xpos-peg.diam*10 && ypos>=peg.ypos+50)
           {
-            xChange=-xChange;
+             xChange=(-1)*xChange;
           }
         }
+        /*else
+        {
+          if (xpos+diam/2 == peg.xpos+peg.diam*10 && ypos>=peg.ypos+50)
+          {
+            xChange=(-1)*xChange;
+          }
+        }*/
     }
-    if(peg.right!=null)
+    
+    if (peg.right != null)
     {
       bins(peg.right);
     }
     else
     {
-      if(xpos>peg.xpos&&ypos>peg.ypos)//if its to the right
+      if (xpos > peg.xpos && ypos > peg.ypos && ypos>=peg.ypos+50)  //if its to the right
       {
-        if(xpos+diam/2>=peg.xpos+peg.diam*10)
+        if(xpos+diam/2 == peg.xpos+peg.diam*10)
         {
-          xChange=-xChange;
+          xChange=(-1)*xChange;
         }
       }
       

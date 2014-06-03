@@ -1,3 +1,7 @@
+//Quincunx in Statistics
+//
+//Weronika Zamlynny
+//AP Statistics pd. 1-2 A
 void setup()
 {
   size(displayWidth-50, displayHeight-50);
@@ -145,27 +149,16 @@ void graph()
   
   
   //START QUINCUNX AGAIN
-  if(keyPressed&&key==' ')
+  if(keyPressed && key==' ')
   {
     screen=1;
   }
-  /*if(mouseX>=width-225&&mouseX<=width+25&&mouseY>=height-150&&mouseY<=height-50)
-  {
-    cursor(HAND);
-    if(mousePressed)
-    {
-      screen=1;
-    }
-  }
-  else
-  {
-    cursor(ARROW);
-  }*/
 }
 
 void mousePressed()
 {
   Ball ball = balls.get(balls.size()-1);//prevents multiple balls from going at once
+
   if(ball.ypos>root.ypos)
   {
     balls.add(new Ball(width/2,height*1/9));
