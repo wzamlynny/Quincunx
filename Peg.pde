@@ -3,7 +3,7 @@ class Peg
   float xpos;
   float ypos;
   float diam;
-  int rowMax;
+  int rowMax;//Please don't change :) thanks.
   
   Peg left;//initializes the next pegs
   Peg right;
@@ -36,7 +36,7 @@ class Peg
      right.display();
    }
   }
-  void bins()
+  void bins()//DELETE THIS EVENTUALLY
   {
     stroke(0,0,100);
     if(left!=null)
@@ -46,6 +46,7 @@ class Peg
     else//draw the line to the left
     {
       line(xpos-diam*10,ypos+50,xpos-diam*10,height);
+      //println(ypos+50);
     }
     
     if(right!=null)

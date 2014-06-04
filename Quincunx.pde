@@ -11,6 +11,20 @@ void setup()
   balls=new ArrayList<Ball>();
   balls.add(new Ball(width/2,height*1/9));
   root=new Peg(width/2,height*3/16,0);
+  
+  float[] binsX = new float[9];//for the xpos of bins
+  binsX[0]=-40;
+  binsX[1]=-30;
+  binsX[2]=-20;
+  binsX[3]=-10;
+  binsX[4]=0;
+  binsX[5]=10;
+  binsX[6]=20;
+  binsX[7]=30;
+  binsX[8]=40;
+  
+  Bins[] bin = new Bins[8];
+  
 }
   ArrayList <Ball> balls;
   Peg root;
@@ -91,7 +105,7 @@ void quincunx()
     ball.display();
     ball.fall();
     root.ballCheck(ball);
-    ball.bins(root);
+   // ball.bins(root);
     
   }
   

@@ -44,7 +44,7 @@ class Ball
       xChange=0;
     }
   }
-  void bins(Peg peg)  //WHY DO ONLY SOME OF THEM WORK D:
+ /* void bins(Peg peg)  //WHY DO ONLY SOME OF THEM WORK D:
   {
     if(peg.left != null)
     {
@@ -58,7 +58,7 @@ class Ball
           {
              xChange=(-1)*xChange;
           }
-        }
+        }*/
         /*else
         {
           if (xpos+diam/2 == peg.xpos+peg.diam*10 && ypos>=peg.ypos+50)
@@ -66,7 +66,7 @@ class Ball
             xChange=(-1)*xChange;
           }
         }*/
-    }
+   /* }
     
     if (peg.right != null)
     {
@@ -83,5 +83,5 @@ class Ball
       }
       
     }
-  }
+  }*/
 }
