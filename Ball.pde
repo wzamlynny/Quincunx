@@ -4,7 +4,7 @@ class Ball
   float ypos;
   float diam;
   float xChange=0;
-  float yChange=1;
+  float yChange=1;//DO NOT CHANGE.
   float c=0;
   
   Ball(float x,float y)

@@ -2,6 +2,14 @@
 //
 //Weronika Zamlynny
 //AP Statistics pd. 1-2 A
+
+ArrayList <Ball> balls;
+Bins[] bin = new Bins[8];
+Peg root;
+
+float startTime=0;
+int screen=0;
+
 void setup()
 {
   size(displayWidth-50, displayHeight-50);
@@ -12,7 +20,8 @@ void setup()
   balls.add(new Ball(width/2,height*1/9));
   root=new Peg(width/2,height*3/16,0);
   
-  float[] binsX = new float[9];//for the xpos of bins
+  //for the x-position of bins
+  float[] binsX = new float[9];
   binsX[0]=-40;
   binsX[1]=-30;
   binsX[2]=-20;
@@ -23,36 +32,28 @@ void setup()
   binsX[7]=30;
   binsX[8]=40;
   
-
-  
   for (int i=0;i<8;i++)
   {
     bin[i]= new Bins(binsX[i],binsX[i+1],root);
   }
   
 }
-  ArrayList <Ball> balls;
-  Peg root;
 
-  float startTime=0;
-  int screen=0;
-    Bins[] bin = new Bins[8];
-  
 void draw()
 {
-  if(screen==0)
+  if (screen==0)
   {
     startScreen();
   }
-  if(screen==1)
+  if (screen==1)
   {
     quincunx();
   }
-  if(screen==2)
+  if (screen==2)
   {
     instructions();
   }
-  if(screen==3)
+  if (screen==3)
   {
     graph();
   }
@@ -74,19 +75,19 @@ void startScreen()
   text("PLAY",width/2-43,height/2+10);
   text("INSTRUCTIONS",width/2-115,height/2+110);
   //GO TO GAME
-  if(mouseX>=width/2-100&&mouseX<=width/2+100&&mouseY>=height/2-50&&mouseY<=height/2+50)
+  if (mouseX>=width/2-100&&mouseX<=width/2+100&&mouseY>=height/2-50&&mouseY<=height/2+50)
   {
     cursor(HAND);
-    if(mousePressed)
+    if (mousePressed)
     {
       screen=1;
     }
   }
   //GO TO INSTRUCTIONS
-  else if(mouseX>=width/2-100&&mouseX<=width/2+100&&mouseY>=height/2+50&&mouseY<=height/2+150)
+  else if (mouseX>=width/2-100&&mouseX<=width/2+100&&mouseY>=height/2+50&&mouseY<=height/2+150)
   {
     cursor(HAND);
-    if(mousePressed)
+    if (mousePressed)
     {
       screen=2;
     }
@@ -132,7 +133,7 @@ void quincunx()
   fill(0,0,0);
   text("BACK",50,height-75);
   text("GRAPH",width-150,height-75);
-  if(mouseX>=25&&mouseX<=225&&mouseY>=height-150&&mouseY<=height-50)
+  if (mouseX>=25&&mouseX<=225 && mouseY>=height-150 && mouseY<=height-50)
   {
     cursor(HAND);
     if(mousePressed)
@@ -140,10 +141,10 @@ void quincunx()
       screen=0;
     }
   }
-  else if(mouseX>=width-225&&mouseX<=width+25&&mouseY>=height-150&&mouseY<=height-50)
+  else if (mouseX>=width-225 && mouseX<=width+25 && mouseY>=height-150 && mouseY<=height-50)
   {
     cursor(HAND);
-    if(mousePressed)
+    if (mousePressed)
     {
       screen=3;
     }
@@ -163,7 +164,7 @@ void instructions()
   textSize(32);
   text("-CLICK to release a ball.\n-SPACE to remove all balls at the bottom.\n-When GRAPH on: SPACE to return to quincunx.",50,height/4);
   text("PRESS SPACE TO GO BACK",50,height*3/4);
-  if(keyPressed&&key==' ')
+  if (keyPressed&&key==' ')
   {
     screen=0;
   }
@@ -174,7 +175,7 @@ void graph()
   
   
   //START QUINCUNX AGAIN
-  if(keyPressed && key==' ')
+  if (keyPressed && key==' ')
   {
     screen=1;
   }
@@ -182,28 +183,31 @@ void graph()
 
 void mousePressed()
 {
-  //prevents multiple balls from going at once
-  if (balls.size() >= 1)
+  if (screen==1)
   {
-    Ball ball = balls.get(balls.size()-1);
-    if (ball.ypos>root.ypos)
+    //prevents multiple balls from going at once
+    if (balls.size() >= 1)
+    {
+      Ball ball = balls.get(balls.size()-1);
+      if (ball.ypos>root.ypos)
+      {
+        balls.add(new Ball(width/2,height*1/9));
+      }
+    }
+    else
     {
       balls.add(new Ball(width/2,height*1/9));
     }
   }
-  else
-  {
-    balls.add(new Ball(width/2,height*1/9));
-  }
 }
 void keyPressed()//Press a key to remove the balls
 {
-  if(key==' ')//Space bar deletes
+  if (key==' ')//Space bar deletes
   {
-    for(int i=balls.size()-1;i>=0;i--)
+    for (int i=balls.size()-1;i>=0;i--)
     {
       Ball ball = balls.get(i);
-      if(ball.ypos>=height-ball.diam)
+      if (ball.ypos>=height-ball.diam)
       {
         balls.remove(i);
       }
@@ -213,14 +217,14 @@ void keyPressed()//Press a key to remove the balls
 
 void timer()
 {
-  if(startTime==0)
+  if (startTime==0)
   {
     startTime=millis();
   }
-  while(millis()-startTime<=100)
+  while (millis()-startTime<=100)
   {
   }
-  if(millis()-startTime>=100)
+  if (millis()-startTime>=100)
   {
     startTime=0;
   }
