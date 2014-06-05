@@ -25,7 +25,7 @@ void setup()
   
 
   
-  for(int i=0;i<8;i++)
+  for (int i=0;i<8;i++)
   {
     bin[i]= new Bins(binsX[i],binsX[i+1],root);
   }
@@ -182,9 +182,16 @@ void graph()
 
 void mousePressed()
 {
-  Ball ball = balls.get(balls.size()-1);//prevents multiple balls from going at once
-
-  if(ball.ypos>root.ypos)
+  //prevents multiple balls from going at once
+  if (balls.size() >= 1)
+  {
+    Ball ball = balls.get(balls.size()-1);
+    if (ball.ypos>root.ypos)
+    {
+      balls.add(new Ball(width/2,height*1/9));
+    }
+  }
+  else
   {
     balls.add(new Ball(width/2,height*1/9));
   }

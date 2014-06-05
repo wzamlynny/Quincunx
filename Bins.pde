@@ -14,33 +14,15 @@ class Bins
     xpos2=width/2+x2*peg.diam;
     
   }
-  void display()
+  void display()//displays the bins
   {
     stroke(0,0,100);
     line (xpos1,topY,xpos1,bottomY);
     line (xpos2,topY,xpos2,bottomY);
   }
+  void bounce()
+  {
+    
+  }
   
 }
-    /*void bins()
-  {
-    stroke(0,0,100);
-    if(left!=null)
-    {
-      left.bins();
-    }
-    else//draw the line to the left
-    {
-      line(xpos-diam*10,ypos+50,xpos-diam*10,height);
-      println(ypos+50);
-    }
-    
-    if(right!=null)
-    {
-      right.bins();
-    }
-    else//draw the line to the right
-    {
-      line(xpos+diam*10,ypos+50,xpos+diam*10,height);
-    } 
-  }*/
