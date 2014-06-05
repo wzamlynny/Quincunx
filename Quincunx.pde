@@ -23,7 +23,12 @@ void setup()
   binsX[7]=30;
   binsX[8]=40;
   
-  Bins[] bin = new Bins[8];
+
+  
+  for(int i=0;i<8;i++)
+  {
+    bin[i]= new Bins(binsX[i],binsX[i+1],root);
+  }
   
 }
   ArrayList <Ball> balls;
@@ -31,6 +36,7 @@ void setup()
 
   float startTime=0;
   int screen=0;
+    Bins[] bin = new Bins[8];
   
 void draw()
 {
@@ -97,7 +103,7 @@ void quincunx()
   cursor(ARROW);
   
   root.display();
-  root.bins();
+ // root.bins();
   
   for(int i=balls.size()-1;i>=0;i--)
   {
@@ -112,6 +118,11 @@ void quincunx()
   if(balls.size()>=50)  //safety- removes balls when too many
   {
     balls.remove(0);
+  }
+  
+  for(int i=0;i<8;i++)
+  {
+    bin[i].display();
   }
   
   //draws the button for graph

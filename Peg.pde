@@ -36,7 +36,7 @@ class Peg
      right.display();
    }
   }
-  void bins()//DELETE THIS EVENTUALLY
+  /*void bins()//DELETE THIS EVENTUALLY
   {
     stroke(0,0,100);
     if(left!=null)
@@ -57,7 +57,7 @@ class Peg
     {
       line(xpos+diam*10,ypos+50,xpos+diam*10,height);
     } 
-  }
+  }*/
   void ballCheck(Ball ball)
   {
     if (ball.ypos+ball.diam/2 == ypos-diam/2) //below

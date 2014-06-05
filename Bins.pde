@@ -7,26 +7,16 @@ class Bins
   
   Bins (float x1, float x2, Peg peg)
   {
-    topY=height*3/16+6*(height/10);
+    topY=height*3/16+6*(height/10)+50;
     bottomY=height;
     
     xpos1=width/2+x1*peg.diam;
     xpos2=width/2+x2*peg.diam;
     
-    //WONT WORK:
-    /*if (peg.left!=null)
-    {
-      Bins(peg.left)
-    }
-    else
-    {
-      xpos1=peg.xpos-peg.diam*10;
-      topY=peg.ypos+50;
-      bottomY=height;
-    }*/
   }
   void display()
   {
+    stroke(0,0,100);
     line (xpos1,topY,xpos1,bottomY);
     line (xpos2,topY,xpos2,bottomY);
   }
