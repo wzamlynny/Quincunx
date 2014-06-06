@@ -45,12 +45,31 @@ class Ball
       xChange=0;
     }
   }
-  
- /* void counter(Bins bin)
+  void place(Bins bin,Ball other)
   {
-    if(ypos>=bin.topY && xpos<bin.xpos1 &&xpos>bin.xpos2)
+    if (ypos>=bin.topY)
     {
-      counted=true;
-    }
-  }*/
+      
+      /*if (dist(xpos,ypos,other.xpos,other.ypos)<diam)
+      {
+        if (xpos<other.xpos)
+        {
+          xpos--;
+        }
+        if (xpos>other.xpos)
+        {
+          xpos++;
+        }
+        if (ypos<other.ypos)
+        {
+          ypos--;
+        }
+        if (ypos>other.ypos)
+        {
+          ypos++;
+        }
+      }
+    }*/
+  }
+  
 }
