@@ -113,6 +113,7 @@ void quincunx()
     ball.fall();
     root.ballCheck(ball);
    // ball.bins(root);
+   
     
   }
   
@@ -121,10 +122,16 @@ void quincunx()
     balls.remove(0);
   }
   
-  for(int i=0;i<8;i++)
+ for(int j=0;j<8;j++)
+{
+    for(int i=balls.size()-1;i>=0;i--)
   {
-    bin[i].display();
+    Ball ball = balls.get(i);
+    //ball.counter(bin[j]);
+    bin[j].display();
+    bin[j].bounce(ball); 
   }
+}
   
   //draws the button for graph
   fill(0,0,100);
@@ -171,8 +178,11 @@ void instructions()
 }
 void graph()
 {
-  rect(width/2,height/2,50,50);
-  
+  //rect(width/2,height/2,50,50);
+  for (int i=0;i<8;i++)
+  {
+    bin[i].graph();
+  }
   
   //START QUINCUNX AGAIN
   if (keyPressed && key==' ')

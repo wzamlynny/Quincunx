@@ -6,6 +6,7 @@ class Ball
   float xChange=0;
   float yChange=1;//DO NOT CHANGE.
   float c=0;
+  boolean counted=false;
   
   Ball(float x,float y)
   {
@@ -44,44 +45,12 @@ class Ball
       xChange=0;
     }
   }
- /* void bins(Peg peg)  //WHY DO ONLY SOME OF THEM WORK D:
+  
+ /* void counter(Bins bin)
   {
-    if(peg.left != null)
+    if(ypos>=bin.topY && xpos<bin.xpos1 &&xpos>bin.xpos2)
     {
-      bins(peg.left);
-    }
-    else
-    {
-        if(xpos < peg.xpos && ypos>peg.ypos)  //if its to the left
-        {
-          if (xpos-diam/2 == peg.xpos-peg.diam*10 && ypos>=peg.ypos+50)
-          {
-             xChange=(-1)*xChange;
-          }
-        }*/
-        /*else
-        {
-          if (xpos+diam/2 == peg.xpos+peg.diam*10 && ypos>=peg.ypos+50)
-          {
-            xChange=(-1)*xChange;
-          }
-        }*/
-   /* }
-    
-    if (peg.right != null)
-    {
-      bins(peg.right);
-    }
-    else
-    {
-      if (xpos > peg.xpos && ypos > peg.ypos && ypos>=peg.ypos+50)  //if its to the right
-      {
-        if(xpos+diam/2 == peg.xpos+peg.diam*10)
-        {
-          xChange=(-1)*xChange;
-        }
-      }
-      
+      counted=true;
     }
   }*/
 }
