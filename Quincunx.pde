@@ -112,6 +112,9 @@ void quincunx()
     ball.display();
     ball.fall();
     root.ballCheck(ball);
+   // ball.bins(root);
+   
+    
   }
   
   if(balls.size()>=50)  //safety- removes balls when too many
@@ -120,21 +123,13 @@ void quincunx()
   }
   
  for(int j=0;j<8;j++)
- {
+{
     for(int i=balls.size()-1;i>=0;i--)
   {
     Ball ball = balls.get(i);
     //ball.counter(bin[j]);
     bin[j].display();
     bin[j].bounce(ball); 
-    /*for(int k=balls.size()-1;k>=0;k--)
-    {
-      if(i!=k)
-      {
-        Ball ball2 = balls.get(k);
-        ball.place(bin[i],ball2);
-      }
-    }*/
   }
 }
   
