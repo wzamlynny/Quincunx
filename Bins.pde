@@ -15,14 +15,12 @@ class Bins
     xpos2=width/2+x2*peg.diam;
     
   }
-  
   void display()//displays the bins
   {
     stroke(0,0,100);
     line (xpos1,topY,xpos1,bottomY);
     line (xpos2,topY,xpos2,bottomY);
   }
-  
   void bounce(Ball ball)
   {
      if (ball.ypos>=topY && xpos1<=ball.xpos && ball.xpos<=xpos2) //Checks specific bin.
