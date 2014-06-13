@@ -9,6 +9,7 @@ Peg root;
 
 float startTime=0;
 int screen=0;
+float ballprop=0;
 
 void setup()
 {
@@ -112,9 +113,6 @@ void quincunx()
     ball.display();
     ball.fall();
     root.ballCheck(ball);
-   // ball.bins(root);
-   
-    
   }
   
   if(balls.size()>=50)  //safety- removes balls when too many
@@ -123,7 +121,7 @@ void quincunx()
   }
   
  for(int j=0;j<8;j++)
-{
+ {
     for(int i=balls.size()-1;i>=0;i--)
   {
     Ball ball = balls.get(i);
@@ -131,6 +129,11 @@ void quincunx()
     bin[j].display();
     bin[j].bounce(ball); 
   }
+ }
+
+if (keyPressed && key=='5')
+{
+  fifty();
 }
   
   //draws the button for graph
@@ -238,4 +241,45 @@ void timer()
   {
     startTime=0;
   }
+}
+
+void fifty()
+{
+  for (int i=0;i<25;i++)
+    {
+      ballprop=random(0,100);
+      if (ballprop<=0.78125)
+      {
+        bin[0].ballAmount++;
+      }
+      else if (ballprop<=6.25)
+      {
+        bin[1].ballAmount++;
+      }
+      else if (ballprop<=22.65625)
+      {
+        bin[2].ballAmount++;
+      }
+      else if (ballprop<=50)
+      {
+        bin[3].ballAmount++;
+      }
+      else if (ballprop<=77.34375)
+      {
+        bin[4].ballAmount++;
+      }
+      else if (ballprop<=93.75)
+      {
+        bin[5].ballAmount++;
+      }
+      else if (ballprop<=99.21875)
+      {
+        bin[6].ballAmount++;
+      }
+      else if (ballprop<=100)
+      {
+        bin[7].ballAmount++;
+      }
+      
+    }
 }

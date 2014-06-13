@@ -6,6 +6,8 @@ class Bins
   float bottomY;
   float ballAmount=0;
   
+  //float ballprop;
+  
   Bins (float x1, float x2, Peg peg)
   {
     topY=height*3/16+6*(height/10)+50;
@@ -42,5 +44,17 @@ class Bins
   {
     fill(40,100,100);
     rect((xpos1+xpos2)/2,bottomY,xpos2-xpos1,ballAmount*20);
+  }
+  
+  void fifty()
+  {
+    /*for (int i=0;i<50;i++)
+    {
+      ballprop=random(0,100);
+      if(ballprob<=0.78125)
+      {
+        
+      }
+    }*/
   }
 }
