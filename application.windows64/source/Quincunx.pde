@@ -9,12 +9,14 @@ Peg root;
 
 float startTime=0;
 int screen=0;
+float ballprop=0;
 
 void setup()
 {
   size(displayWidth-50, displayHeight-50);
   colorMode(HSB,360,100,100);
   rectMode(CENTER);
+  frameRate(120);
   
   balls=new ArrayList<Ball>();
   balls.add(new Ball(width/2,height*1/9));
@@ -112,9 +114,6 @@ void quincunx()
     ball.display();
     ball.fall();
     root.ballCheck(ball);
-   // ball.bins(root);
-   
-    
   }
   
   if(balls.size()>=50)  //safety- removes balls when too many
@@ -123,7 +122,7 @@ void quincunx()
   }
   
  for(int j=0;j<8;j++)
-{
+ {
     for(int i=balls.size()-1;i>=0;i--)
   {
     Ball ball = balls.get(i);
@@ -131,7 +130,7 @@ void quincunx()
     bin[j].display();
     bin[j].bounce(ball); 
   }
-}
+ }
   
   //draws the button for graph
   fill(0,0,100);
@@ -169,7 +168,7 @@ void instructions()
   textSize(64);
   text("Instructions",width/2-200,100);
   textSize(32);
-  text("-CLICK to release a ball.\n-SPACE to remove all balls at the bottom.\n-When GRAPH on: SPACE to return to quincunx.",50,height/4);
+  text("-CLICK to release a ball.\n-SPACE to remove all balls at the bottom.\n-When GRAPH on: SPACE to return to quincunx.\n-When GRAPH on: PRESS 5 to add 25 data points",50,height/4);
   text("PRESS SPACE TO GO BACK",50,height*3/4);
   if (keyPressed&&key==' ')
   {
@@ -182,6 +181,15 @@ void graph()
   for (int i=0;i<8;i++)
   {
     bin[i].graph();
+    //Makes sure the graph does not go above the screen.
+    if (bin[i].ballAmount*bin[i].size>=width)
+    {
+      for (int j=0;j<8;j++)
+      {
+        bin[j].size=bin[j].size/2;
+        quincunx();
+      }
+    }
   }
   
   //START QUINCUNX AGAIN
@@ -189,6 +197,11 @@ void graph()
   {
     screen=1;
   }
+  
+  if (keyPressed && key=='5')
+ {
+  fifty();
+ }
 }
 
 void mousePressed()
@@ -238,4 +251,44 @@ void timer()
   {
     startTime=0;
   }
+}
+
+void fifty()
+{
+  for (int i=0;i<25;i++)
+    {
+      ballprop=random(0,100);
+      if (ballprop<=0.78125)
+      {
+        bin[0].ballAmount++;
+      }
+      else if (ballprop<=6.25)
+      {
+        bin[1].ballAmount++;
+      }
+      else if (ballprop<=22.65625)
+      {
+        bin[2].ballAmount++;
+      }
+      else if (ballprop<=50)
+      {
+        bin[3].ballAmount++;
+      }
+      else if (ballprop<=77.34375)
+      {
+        bin[4].ballAmount++;
+      }
+      else if (ballprop<=93.75)
+      {
+        bin[5].ballAmount++;
+      }
+      else if (ballprop<=99.21875)
+      {
+        bin[6].ballAmount++;
+      }
+      else if (ballprop<=100)
+      {
+        bin[7].ballAmount++;
+      }
+    }
 }

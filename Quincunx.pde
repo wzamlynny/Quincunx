@@ -16,6 +16,7 @@ void setup()
   size(displayWidth-50, displayHeight-50);
   colorMode(HSB,360,100,100);
   rectMode(CENTER);
+  frameRate(120);
   
   balls=new ArrayList<Ball>();
   balls.add(new Ball(width/2,height*1/9));
@@ -130,11 +131,6 @@ void quincunx()
     bin[j].bounce(ball); 
   }
  }
-
-if (keyPressed && key=='5')
-{
-  fifty();
-}
   
   //draws the button for graph
   fill(0,0,100);
@@ -172,7 +168,7 @@ void instructions()
   textSize(64);
   text("Instructions",width/2-200,100);
   textSize(32);
-  text("-CLICK to release a ball.\n-SPACE to remove all balls at the bottom.\n-When GRAPH on: SPACE to return to quincunx.",50,height/4);
+  text("-CLICK to release a ball.\n-SPACE to remove all balls at the bottom.\n-When GRAPH on: SPACE to return to quincunx.\n-When GRAPH on: PRESS 5 to add 25 data points",50,height/4);
   text("PRESS SPACE TO GO BACK",50,height*3/4);
   if (keyPressed&&key==' ')
   {
@@ -185,6 +181,15 @@ void graph()
   for (int i=0;i<8;i++)
   {
     bin[i].graph();
+    //Makes sure the graph does not go above the screen.
+    if (bin[i].ballAmount*bin[i].size>=width)
+    {
+      for (int j=0;j<8;j++)
+      {
+        bin[j].size=bin[j].size/2;
+        quincunx();
+      }
+    }
   }
   
   //START QUINCUNX AGAIN
@@ -192,6 +197,11 @@ void graph()
   {
     screen=1;
   }
+  
+  if (keyPressed && key=='5')
+ {
+  fifty();
+ }
 }
 
 void mousePressed()
@@ -280,6 +290,5 @@ void fifty()
       {
         bin[7].ballAmount++;
       }
-      
     }
 }

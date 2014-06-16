@@ -14,6 +14,7 @@ class Ball
     ypos=y;
     diam=20;
   }
+  
   Ball(float x,float y,float d)
   {
     xpos=x;
@@ -35,6 +36,7 @@ class Ball
       c=0;
     }
   }
+  
   void fall()
   {
     xpos+=xChange;
@@ -45,12 +47,5 @@ class Ball
       xChange=0;
     }
   }
-  
- /* void counter(Bins bin)
-  {
-    if(ypos>=bin.topY && xpos<bin.xpos1 &&xpos>bin.xpos2)
-    {
-      counted=true;
-    }
-  }*/
+ 
 }

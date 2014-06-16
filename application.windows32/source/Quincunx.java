@@ -25,12 +25,14 @@ Peg root;
 
 float startTime=0;
 int screen=0;
+float ballprop=0;
 
 public void setup()
 {
   size(displayWidth-50, displayHeight-50);
   colorMode(HSB,360,100,100);
   rectMode(CENTER);
+  frameRate(120);
   
   balls=new ArrayList<Ball>();
   balls.add(new Ball(width/2,height*1/9));
@@ -128,9 +130,6 @@ public void quincunx()
     ball.display();
     ball.fall();
     root.ballCheck(ball);
-   // ball.bins(root);
-   
-    
   }
   
   if(balls.size()>=50)  //safety- removes balls when too many
@@ -139,7 +138,7 @@ public void quincunx()
   }
   
  for(int j=0;j<8;j++)
-{
+ {
     for(int i=balls.size()-1;i>=0;i--)
   {
     Ball ball = balls.get(i);
@@ -147,7 +146,7 @@ public void quincunx()
     bin[j].display();
     bin[j].bounce(ball); 
   }
-}
+ }
   
   //draws the button for graph
   fill(0,0,100);
@@ -185,7 +184,7 @@ public void instructions()
   textSize(64);
   text("Instructions",width/2-200,100);
   textSize(32);
-  text("-CLICK to release a ball.\n-SPACE to remove all balls at the bottom.\n-When GRAPH on: SPACE to return to quincunx.",50,height/4);
+  text("-CLICK to release a ball.\n-SPACE to remove all balls at the bottom.\n-When GRAPH on: SPACE to return to quincunx.\n-When GRAPH on: PRESS 5 to add 25 data points",50,height/4);
   text("PRESS SPACE TO GO BACK",50,height*3/4);
   if (keyPressed&&key==' ')
   {
@@ -198,6 +197,15 @@ public void graph()
   for (int i=0;i<8;i++)
   {
     bin[i].graph();
+    //Makes sure the graph does not go above the screen.
+    if (bin[i].ballAmount*bin[i].size>=width)
+    {
+      for (int j=0;j<8;j++)
+      {
+        bin[j].size=bin[j].size/2;
+        quincunx();
+      }
+    }
   }
   
   //START QUINCUNX AGAIN
@@ -205,6 +213,11 @@ public void graph()
   {
     screen=1;
   }
+  
+  if (keyPressed && key=='5')
+ {
+  fifty();
+ }
 }
 
 public void mousePressed()
@@ -255,6 +268,46 @@ public void timer()
     startTime=0;
   }
 }
+
+public void fifty()
+{
+  for (int i=0;i<25;i++)
+    {
+      ballprop=random(0,100);
+      if (ballprop<=0.78125f)
+      {
+        bin[0].ballAmount++;
+      }
+      else if (ballprop<=6.25f)
+      {
+        bin[1].ballAmount++;
+      }
+      else if (ballprop<=22.65625f)
+      {
+        bin[2].ballAmount++;
+      }
+      else if (ballprop<=50)
+      {
+        bin[3].ballAmount++;
+      }
+      else if (ballprop<=77.34375f)
+      {
+        bin[4].ballAmount++;
+      }
+      else if (ballprop<=93.75f)
+      {
+        bin[5].ballAmount++;
+      }
+      else if (ballprop<=99.21875f)
+      {
+        bin[6].ballAmount++;
+      }
+      else if (ballprop<=100)
+      {
+        bin[7].ballAmount++;
+      }
+    }
+}
 class Ball
 {
   float xpos;
@@ -271,6 +324,7 @@ class Ball
     ypos=y;
     diam=20;
   }
+  
   Ball(float x,float y,float d)
   {
     xpos=x;
@@ -292,6 +346,7 @@ class Ball
       c=0;
     }
   }
+  
   public void fall()
   {
     xpos+=xChange;
@@ -302,14 +357,7 @@ class Ball
       xChange=0;
     }
   }
-  
- /* void counter(Bins bin)
-  {
-    if(ypos>=bin.topY && xpos<bin.xpos1 &&xpos>bin.xpos2)
-    {
-      counted=true;
-    }
-  }*/
+ 
 }
 class Bins
 {
@@ -318,22 +366,23 @@ class Bins
   float topY;
   float bottomY;
   float ballAmount=0;
+  float size=20;
   
   Bins (float x1, float x2, Peg peg)
   {
     topY=height*3/16+6*(height/10)+50;
     bottomY=height;
-    
     xpos1=width/2+x1*peg.diam;
-    xpos2=width/2+x2*peg.diam;
-    
+    xpos2=width/2+x2*peg.diam; 
   }
+  
   public void display()//displays the bins
   {
     stroke(0,0,100);
     line (xpos1,topY,xpos1,bottomY);
     line (xpos2,topY,xpos2,bottomY);
   }
+  
   public void bounce(Ball ball)
   {
      if (ball.ypos>=topY && xpos1<=ball.xpos && ball.xpos<=xpos2) //Checks specific bin.
@@ -345,7 +394,6 @@ class Bins
        if (ball.counted==false)
        {
          ballAmount++;
-         //println(ballAmount);
          ball.counted=true;
        }
      } 
@@ -354,8 +402,9 @@ class Bins
   public void graph()
   {
     fill(40,100,100);
-    rect((xpos1+xpos2)/2,bottomY,xpos2-xpos1,ballAmount*20);
+    rect((xpos1+xpos2)/2,bottomY,xpos2-xpos1,ballAmount*size);
   }
+  
 }
 class Peg
 {
